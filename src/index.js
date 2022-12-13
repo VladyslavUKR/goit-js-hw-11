@@ -35,14 +35,17 @@ async function onSubmitForm(e) {
 
     if (valueQuery.length === 0 || input === '') {
       console.log(valueQuery);
-      Notiflix.Notify.warning(
+
+      Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
       );
     } else if (e.type === 'submit') {
       delateListGallery();
 
       refs.loadMoreBtn.classList.remove('load-more');
+
       currentPage += 1;
+
       Notiflix.Notify.success(`Hooray! We found ${quantityImages} images.`);
 
       createContent(valueQuery);
@@ -50,9 +53,9 @@ async function onSubmitForm(e) {
       Notiflix.Notify.failure(
         "We're sorry, but you've reached the end of search results."
       );
+
       refs.loadMoreBtn.classList.add('load-more');
     } else {
-      console.log(currentPage);
       createContent(valueQuery);
       currentPage += 1;
     }
@@ -93,6 +96,7 @@ let gallery = new SimpleLightbox('.photo-card a', {
   captionsData: 'alt',
   captionDelay: 250,
   showCounter: false,
+  maxZoom: 10,
 });
 
 gallery.on('show.simplelightbox', function () {

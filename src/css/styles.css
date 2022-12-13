@@ -21,14 +21,16 @@ body {
 
 .search-form {
   padding: 10px;
-  background-color: blueviolet;
+  background-color: rgba(65, 77, 241, 0.753);
   text-align: center;
 }
 
 .input-value {
+  outline: none;
+
   border-radius: 8px;
   border: none;
-  padding: 6px;
+  padding: 10px;
 }
 
 .button-submit {
@@ -41,6 +43,16 @@ body {
 /* .gallery {
   display: flex;
 } */
+
+.info {
+  display: flex;
+  justify-content: center;
+}
+
+.info-item {
+  display: flex;
+  flex-wrap: wrap;
+}
 
 .load-more {
   visibility: hidden;
