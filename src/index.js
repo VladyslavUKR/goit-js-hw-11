@@ -11,7 +11,7 @@ const refs = {
 };
 
 let currentPage = 1;
-let limit = 40;
+let limit = 5;
 
 refs.formImages.addEventListener('submit', onSubmitForm);
 refs.loadMoreBtn.addEventListener('click', onSubmitForm);
@@ -29,7 +29,7 @@ async function onSubmitForm(e) {
 
     const valueQuery = response.data.hits;
     const quantityImages = response.data.totalHits;
-    let totalPages = quantityImages / limit;
+    let totalPages = Math.ceil(quantityImages / limit);
 
     console.log(valueQuery);
 
@@ -92,6 +92,8 @@ function createListItem(item) {
 
 // _______ / РЕНДЕР ЗОБРАЖЕНЬ_____________
 
+//____libary SimpleLightbox____
+
 let gallery = new SimpleLightbox('.photo-card a', {
   captionsData: 'alt',
   showCounter: false,
@@ -102,6 +104,8 @@ let gallery = new SimpleLightbox('.photo-card a', {
 
 gallery.refresh();
 gallery.on('show.simplelightbox');
+
+//____ | libary SimpleLightbox____
 
 function delateListGallery() {
   refs.listGallery.innerHTML = '';

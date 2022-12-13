@@ -56,4 +56,7 @@ body {
 
 .load-more {
   visibility: hidden;
+  padding: 10px;
+  background-color: yellow;
+  outline: none;
 }
