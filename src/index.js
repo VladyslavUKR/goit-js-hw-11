@@ -75,33 +75,33 @@ function createListItem(item) {
    <a href="${item.largeImageURL}"><img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" /></a>
     <div class="info">
       <p class="info-item">
-        <b>Likes ${item.likes}</b>
+        <b>Likes: ${item.likes}</b>
       </p>
       <p class="info-item">
-        <b>Views ${item.views}</b>
+        <b>Views: ${item.views}</b>
       </p>
       <p class="info-item">
-        <b>Comments ${item.comments}</b>
+        <b>Comments: ${item.comments}</b>
       </p>
       <p class="info-item">
-        <b>Downloads ${item.downloads}</b>
+        <b>Downloads: ${item.downloads}</b>
       </p>
-    </div>
-  </div>`;
+      </div>
+      </div>`;
 }
 
 // _______ / РЕНДЕР ЗОБРАЖЕНЬ_____________
 
 let gallery = new SimpleLightbox('.photo-card a', {
   captionsData: 'alt',
-  captionDelay: 250,
   showCounter: false,
   maxZoom: 10,
+  disableScroll: true,
+  nav: true,
 });
 
-gallery.on('show.simplelightbox', function () {
-  // do something…
-});
+gallery.refresh();
+gallery.on('show.simplelightbox');
 
 function delateListGallery() {
   refs.listGallery.innerHTML = '';
