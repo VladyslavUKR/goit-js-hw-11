@@ -1,5 +1,7 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = {
   formImages: document.querySelector('.search-form'),
@@ -9,7 +11,7 @@ const refs = {
 };
 
 let currentPage = 1;
-let limit = 100;
+let limit = 40;
 
 refs.formImages.addEventListener('submit', onSubmitForm);
 refs.loadMoreBtn.addEventListener('click', onSubmitForm);
@@ -67,7 +69,7 @@ function createContent(valueQuery) {
 
 function createListItem(item) {
   return `<div class="photo-card">
-    <img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" />
+   <a href="${item.largeImageURL}"><img src="${item.webformatURL}" alt="${item.tags}" loading="lazy" /></a>
     <div class="info">
       <p class="info-item">
         <b>Likes ${item.likes}</b>
@@ -84,7 +86,18 @@ function createListItem(item) {
     </div>
   </div>`;
 }
+
 // _______ / РЕНДЕР ЗОБРАЖЕНЬ_____________
+
+let gallery = new SimpleLightbox('.photo-card a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+  showCounter: false,
+});
+
+gallery.on('show.simplelightbox', function () {
+  // do something…
+});
 
 function delateListGallery() {
   refs.listGallery.innerHTML = '';
