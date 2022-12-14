@@ -49,6 +49,7 @@ async function onSubmitForm(e) {
       Notiflix.Notify.success(`Hooray! We found ${quantityImages} images.`);
 
       createContent(valueQuery);
+      gallery.refresh();
     } else if (currentPage > totalPages) {
       Notiflix.Notify.failure(
         "We're sorry, but you've reached the end of search results."
@@ -57,6 +58,8 @@ async function onSubmitForm(e) {
       refs.loadMoreBtn.classList.add('load-more');
     } else {
       createContent(valueQuery);
+      gallery.refresh();
+
       currentPage += 1;
     }
   } catch (error) {
@@ -102,7 +105,6 @@ let gallery = new SimpleLightbox('.photo-card a', {
   nav: true,
 });
 
-gallery.refresh();
 gallery.on('show.simplelightbox');
 
 //____ | libary SimpleLightbox____
