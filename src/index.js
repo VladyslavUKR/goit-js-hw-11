@@ -11,7 +11,7 @@ const refs = {
 };
 
 let currentPage = 1;
-let limit = 5;
+let limit = 40;
 
 refs.formImages.addEventListener('submit', onSubmitForm);
 refs.loadMoreBtn.addEventListener('click', onSubmitForm);
@@ -70,7 +70,7 @@ async function onSubmitForm(e) {
 // _______РЕНДЕР ЗОБРАЖЕНЬ_____________
 function createContent(valueQuery) {
   const generateContent = valueQuery.map(value => createListItem(value));
-  refs.listGallery.insertAdjacentHTML('beforeend', generateContent);
+  refs.listGallery.insertAdjacentHTML('beforeend', generateContent.join(''));
 }
 
 function createListItem(item) {
@@ -112,3 +112,12 @@ gallery.on('show.simplelightbox');
 function delateListGallery() {
   refs.listGallery.innerHTML = '';
 }
+
+const { height: cardHeight } = document
+  .querySelector('.gallery')
+  .firstElementChild.getBoundingClientRect();
+
+window.scrollBy({
+  top: cardHeight * 2,
+  behavior: 'smooth',
+});
