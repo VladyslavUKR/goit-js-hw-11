@@ -95,6 +95,9 @@ function createListItem(item) {
 
 // _______ / РЕНДЕР ЗОБРАЖЕНЬ_____________
 
+function delateListGallery() {
+  refs.listGallery.innerHTML = '';
+}
 //____libary SimpleLightbox____
 
 let gallery = new SimpleLightbox('.photo-card a', {
@@ -109,10 +112,7 @@ gallery.on('show.simplelightbox');
 
 //____ | libary SimpleLightbox____
 
-function delateListGallery() {
-  refs.listGallery.innerHTML = '';
-}
-
+// прокрутка сторінки _________
 const { height: cardHeight } = document
   .querySelector('.gallery')
   .firstElementChild.getBoundingClientRect();
@@ -121,3 +121,5 @@ window.scrollBy({
   top: cardHeight * 2,
   behavior: 'smooth',
 });
+
+// прокрутка сторінки _________
