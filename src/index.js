@@ -29,7 +29,7 @@ async function onSubmitForm(e) {
 
     const valueQuery = response.data.hits;
     const quantityImages = response.data.totalHits;
-    let totalPages = Math.ceil(quantityImages / limit);
+    let totalPages = quantityImages / limit;
 
     console.log(valueQuery);
 
