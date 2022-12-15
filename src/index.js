@@ -20,7 +20,7 @@ async function onSubmitForm(e) {
   e.preventDefault();
 
   const input = refs.inputForm.value.trim();
-  console.log(input);
+  // console.log(input);
 
   try {
     const response = await axios.get(
@@ -29,12 +29,12 @@ async function onSubmitForm(e) {
 
     const valueQuery = response.data.hits;
     const quantityImages = response.data.totalHits;
-    let totalPages = quantityImages / limit;
+    const totalPages = quantityImages / limit;
 
-    console.log(valueQuery);
+    // console.log(valueQuery);
 
     if (valueQuery.length === 0 || input === '') {
-      console.log(valueQuery);
+      // console.log(valueQuery);
 
       Notiflix.Notify.failure(
         'Sorry, there are no images matching your search query. Please try again.'
@@ -100,7 +100,7 @@ function delateListGallery() {
 }
 //____libary SimpleLightbox____
 
-let gallery = new SimpleLightbox('.photo-card a', {
+const gallery = new SimpleLightbox('.photo-card a', {
   captionsData: 'alt',
   showCounter: false,
   maxZoom: 10,
@@ -111,15 +111,3 @@ let gallery = new SimpleLightbox('.photo-card a', {
 gallery.on('show.simplelightbox');
 
 //____ | libary SimpleLightbox____
-
-// прокрутка сторінки _________
-const { height: cardHeight } = document
-  .querySelector('.gallery')
-  .firstElementChild.getBoundingClientRect();
-
-window.scrollBy({
-  top: cardHeight * 2,
-  behavior: 'smooth',
-});
-
-// прокрутка сторінки _________
