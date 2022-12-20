@@ -11,7 +11,7 @@ const refs = {
 };
 
 let currentPage = 1;
-let limit = 40;
+const limit = 40;
 
 refs.formImages.addEventListener('submit', onSubmitForm);
 refs.loadMoreBtn.addEventListener('click', onSubmitForm);
@@ -29,7 +29,8 @@ async function onSubmitForm(e) {
 
     const valueQuery = response.data.hits;
     const quantityImages = response.data.totalHits;
-    const totalPages = quantityImages / limit;
+
+    const totalPages = Math.ceil(quantityImages - limit * currentPage);
 
     // console.log(valueQuery);
 
@@ -50,7 +51,7 @@ async function onSubmitForm(e) {
 
       createContent(valueQuery);
       gallery.refresh();
-    } else if (currentPage > totalPages) {
+    } else if (totalPages <= 0) {
       Notiflix.Notify.failure(
         "We're sorry, but you've reached the end of search results."
       );
@@ -111,3 +112,16 @@ const gallery = new SimpleLightbox('.photo-card a', {
 gallery.on('show.simplelightbox');
 
 //____ | libary SimpleLightbox____
+
+//____  Плавне прокручування  сторінки
+
+const { height: cardHeight } = document
+  .querySelector('.gallery')
+  .firstElementChild.getBoundingClientRect();
+
+window.scrollBy({
+  top: cardHeight * 2,
+  behavior: 'smooth',
+});
+
+//____ Плавне прокручування  сторінки
